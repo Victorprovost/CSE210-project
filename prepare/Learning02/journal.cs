@@ -13,7 +13,7 @@ public class Journal
 {
     private List<Entry> entries = new List<Entry>();
 
-    // Method to add a new entry
+    
     public void AddEntry(string prompt, string response)
     {
         Entry newEntry = new Entry
@@ -25,7 +25,6 @@ public class Journal
         entries.Add(newEntry);
     }
 
-    // Method to display the journal
     public void DisplayJournal()
     {
         foreach (var entry in entries)
@@ -34,7 +33,7 @@ public class Journal
         }
     }
 
-    // Method to save the journal to a file
+    
     public void SaveJournalToFile(string filename)
     {
         using (StreamWriter writer = new StreamWriter(filename))
@@ -46,22 +45,27 @@ public class Journal
         }
     }
 
-    // Method to load the journal from a file
+    
     public void LoadJournalFromFile(string filename)
     {
-        entries.Clear(); // Clear existing entries
+        entries.Clear();
         using (StreamReader reader = new StreamReader(filename))
         {
             string line;
             while ((line = reader.ReadLine()) != null)
             {
-                // Parse the line and create entry objects
-                // Add them to the entries list
-                // Assuming each entry is stored in the format as written in SaveJournalToFile method
+                string[] parts = line.Split(',');
+                Entry newEntry = new Entry
+                {
+                    Date = DateTime.Parse(parts[0]),
+                    Prompt = parts[1],
+                    Response = parts[2]
+                };
+            }
             }
         }
     }
-}
+
 
 partial class Program
 {
