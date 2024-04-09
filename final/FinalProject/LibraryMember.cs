@@ -1,7 +1,7 @@
 class LibraryMember
 {
-    private string Name { get; set; }
-    private string MemberID { get; set; }
+    public string Name { get; set; }
+    public string MemberID { get; set; }
     public List<LibraryItem> BorrowedItems { get; set; }
 
     public LibraryMember(string name, string memberID)
